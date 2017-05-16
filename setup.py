@@ -5,9 +5,9 @@ from setuptools import setup, find_packages
 setup(
     name='django-secrets',
     description='The easy way of handling Django secrets.',
-    version='0.2.2',
+    version='0.2.3',
     url='https://github.com/kakulukia/django-secrets',
-    download_url='https://github.com/kakulukia/django-secrets/tarball/0.2.2',
+    download_url='https://github.com/kakulukia/django-secrets/tarball/0.2.3',
     author='Andy Grabow',
     author_email='andy@freilandkiwis.de',
     license='MIT',
