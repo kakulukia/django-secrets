@@ -1,7 +1,7 @@
 import io
 import os
 
-from django.core.exceptions import ImproperlyConfigured
+from builtins import input
 
 from django_secrets.utils import green, red
 
@@ -63,7 +63,7 @@ def check():
                 print(red('\nSecret missing, please fill in the blanks ..\n'))
                 intro_done = True
 
-            data = raw_input(key + ': ')
+            data = input(key + ': ')
             filled_blanks[key] = data
 
     with io.open('secrets/secrets.py', 'w', encoding='utf8') as secret_file:
