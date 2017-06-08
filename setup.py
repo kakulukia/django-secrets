@@ -11,7 +11,6 @@ setup(
     author='Andy Grabow',
     author_email='andy@freilandkiwis.de',
     license='MIT',
-    classifiers=[],
     install_requires=[
       'Django>=1.8',
     ],
