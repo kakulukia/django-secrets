@@ -2,7 +2,7 @@ import io
 import os
 
 from builtins import input
-from imp import reload
+from importlib import reload
 
 from django_secrets.utils import green, red
 
