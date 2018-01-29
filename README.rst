@@ -2,7 +2,7 @@ Keep your secrets secret!
 =========================
 
 This little app helps you to not commit your secrets to a repo and adds
-a nice way of exporting/importing secrets for a new deployment.
+a nice way of exporting/importing secrets for a new deployment or automated testing with envirenment variables.
 
 Installation
 ------------
