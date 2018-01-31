@@ -2,7 +2,10 @@ import io
 import os
 
 from builtins import input
-from importlib import reload
+try:
+    from importlib import reload
+except ImportError:
+    pass  # its a builtin in python2
 
 from django_secrets.utils import green, red
 
