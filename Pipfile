@@ -9,6 +9,7 @@ verify_ssl = true
 ipdb = "*"
 ipython = "*"
 pypandoc = "*"
+future = "*"
 
 
 [packages]

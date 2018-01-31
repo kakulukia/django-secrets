@@ -4,3 +4,4 @@ dist
 django_secrets.egg-info
 htmlcov
 .coverage
+Pipfile.lock
