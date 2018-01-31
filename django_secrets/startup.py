@@ -94,6 +94,7 @@ def check():
         for key, value in filled_blanks.items():
             secret_file.write(u'%s = "%s"\n' % (key, value))
 
+    print(os.listdir('secrets'))
     # maybe we had a new value added so refresh the import system
     from secrets import secrets
     reload(secrets)
