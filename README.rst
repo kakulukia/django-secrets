@@ -1,5 +1,11 @@
-Keep your secrets secret!
-=========================
+Keep your secrets secret! |BuildStatus|_ |Coverage|_
+======================================================
+
+.. |BuildStatus| image:: https://travis-ci.org/kakulukia/django-secrets.svg
+.. _BuildStatus: https://travis-ci.org/kakulukia/django-secrets
+
+.. |Coverage| image:: https://codecov.io/gh/kakulukia/django-secrets/branch/master/graph/badge.svg
+.. _Coverage: https://codecov.io/gh/kakulukia/django-secrets
 
 This little app helps you to not commit your secrets to a repo and adds
 a nice way of exporting/importing secrets for a new deployment or automated testing with envirenment variables.
@@ -71,10 +77,11 @@ them the normal way, but now they are save! :)
 Import / Export
 ---------------
 
-This package adds a new managemant command: ``export_secrets``. This
+This package adds a new management command: ``export_secrets``. This
 will print out export statements so you can easily create environment
 variables on a new machine and let the ``check`` function do the rest
 for you, because it will also read in any known environment variables as
-secret values.
+secret values. This is quite handy for dynamically spawned instances or
+CI testing.
 
 Have fun and stay safe!
