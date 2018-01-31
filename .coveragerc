@@ -4,5 +4,3 @@ omit =
     *virtualenv*
     *manage.py*
 show_missing = True
-exclude_lines =
-    raise NotImplementedError

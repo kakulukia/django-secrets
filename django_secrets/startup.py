@@ -44,7 +44,6 @@ def create_secrets_package(testing=False):
 
 
 def load_definitions():
-    print('definitions')
     try:  # to load the secrets definitions for this project
         from secrets import definitions
     except (ImportError, ModuleNotFoundError):
@@ -57,10 +56,6 @@ def load_definitions():
     reload(definitions)
 
     return definitions.SECRET_KEYS
-
-
-print('loading')
-load_definitions()
 
 
 def check():

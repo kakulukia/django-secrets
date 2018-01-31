@@ -37,10 +37,10 @@ test: clean lint ## run testsuite
 
 coverage: clean  ## test and generate coverage data
 	@SECOND_SECRET=blub; coverage run manage.py test
+	@coverage report -m
 	@make lint
 
 view-coverage: coverage ## open coverage report in the browser
-	@coverage report -m
 	@coverage html
 	@open htmlcov/index.html
 

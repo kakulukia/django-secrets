@@ -1,6 +1,5 @@
 import os
 import shutil
-from importlib import reload
 
 from django.test import TestCase
 
@@ -16,16 +15,18 @@ class SecretTest(TestCase):
 
         self.assertIn('secrets', os.listdir('.'))
         shutil.rmtree("secrets")
-        # reload(secrets)
         self.assertNotIn('secrets', os.listdir('.'))
         create_secrets_package(testing=True)
-        # reload(secrets)
         self.assertIn('secrets', os.listdir('.'))
 
         # test adding back the secret
         os.environ["SECOND_SECRET"] = "blub"
-        import secrets
-        reload(secrets)
         check()
         from secrets import secrets
         self.assertEqual(secrets.SECOND_SECRET, 'blub')
+
+    def test_export(self):
+        from django_secrets.management.commands.export_secrets import Command
+
+        command = Command()
+        command.handle()
