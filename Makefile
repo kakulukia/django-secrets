@@ -25,7 +25,7 @@ init: ## create virtualenv for python3
 	pipenv install --dev
 
 init2: ## create virtualenv for python2
-	pipenv install --two
+	pipenv install --two --dev
 
 lint: ## check style with flake8
 #	@echo "\nlooking for lints .."

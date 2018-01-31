@@ -1,7 +1,11 @@
 import io
 import os
+try:  # python2
+    input = raw_input
+except NameError:
+    pass
 
-from builtins import input
+
 try:
     from importlib import reload
 except ImportError:
@@ -17,7 +21,7 @@ def create_secrets_package(testing=False):
         os.mkdir('secrets')
     try:
         os.stat('secrets/__init__.py')
-    except IOError:
+    except OSError:
         with io.open('secrets/__init__.py', 'w', encoding='utf8') as init_file:
             # just touch the file to create a new module
             init_file.close()
