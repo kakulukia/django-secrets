@@ -6,21 +6,18 @@ from importlib import reload
 
 from django_secrets.utils import green, red
 
-try:  # to load the secrets definitions for this project
-    from secrets.definitions import SECRET_KEYS
-except ImportError:
 
-    # .. otherwise initialize a new secrets package
-    print(green('\nSecret definitions initialized under secrets/definitions.py'))
-    print('Add your secrets there and fill the values on the next use of a manage.py command.\n\n')
-
+def create_secrets_package(testing=False):
     try:
         os.stat('secrets')
-    except:
+    except Exception:
         os.mkdir('secrets')
+    try:
+        os.stat('secrets/__init__.py')
+    except FileNotFoundError:
         with io.open('secrets/__init__.py', 'w', encoding='utf8') as init_file:
             # just touch the file to create a new module
-            pass
+            init_file.close()
 
     with io.open('secrets/definitions.py', 'w', encoding='utf8') as definitions_file:
         definitions_file.write(u'# coding=utf-8\n\n')
@@ -30,21 +27,50 @@ except ImportError:
         definitions_file.write(u'# SECRET_KEY = secrets.SECRET_KEY\n\n')
         definitions_file.write(u'SECRET_KEYS = [\n')
         definitions_file.write(u'    # start with your Django secret key like this:\n')
-        definitions_file.write(u'    # "SECRET_KEY",\n')
+        if testing:
+            definitions_file.write(u'    "SECRET_KEY",\n')
+            definitions_file.write(u'    "SECOND_SECRET",\n')
+        else:
+            definitions_file.write(u'    "SECRET_KEY",\n')
         definitions_file.write(u']\n')
 
-    SECRET_KEYS = []
+    # test for ignore file and create it if needed
+    if not os.path.isfile('secrets/.gitignore'):
+        with io.open('secrets/.gitignore', 'w', encoding='utf8') as ignore_file:
+            ignore_file.write(u'secrets.py\n')
+
+    print(green('\nSecret definitions initialized under secrets/definitions.py'))
+    print('Add your secrets there and fill the values on the next use of a manage.py command.\n\n')
+
+
+def load_definitions():
+    print('definitions')
+    try:  # to load the secrets definitions for this project
+        from secrets import definitions
+    except (ImportError, ModuleNotFoundError):
+        # .. otherwise initialize a new secrets package
+        create_secrets_package()
+        import secrets
+        reload(secrets)
+        from secrets import definitions
+
+    reload(definitions)
+
+    return definitions.SECRET_KEYS
+
+
+print('loading')
+load_definitions()
+
 
 def check():
+
+    SECRET_KEYS = load_definitions()
+
     try:  # to import the existing secrets
         from secrets import secrets
     except ImportError:
         secrets = None
-
-        # test for ignore file and create it if needed
-        if not os.path.isfile('secrets/.gitignore'):
-            with io.open('secrets/.gitignore', 'w', encoding='utf8') as ignore_file:
-                ignore_file.write(u'secrets.py\n')
 
     # Configure the project with all secrets found in the definitions list
     # environment vars will be used as values if available
@@ -74,5 +100,5 @@ def check():
             secret_file.write(u'%s = "%s"\n' % (key, value))
 
     # maybe we had a new value added so refresh the import system
-    if secrets:
-        reload(secrets)
+    from secrets import secrets
+    reload(secrets)

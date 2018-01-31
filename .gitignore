@@ -2,3 +2,5 @@ secrets
 build
 dist
 django_secrets.egg-info
+htmlcov
+.coverage

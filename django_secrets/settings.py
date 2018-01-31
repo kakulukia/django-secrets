@@ -122,21 +122,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-
-SECRET_KEYS = [
-    'IMATERIALISE_TOOL_ID',
-    'IMATERIALISE_API_KEY',
-    'IMATERIALISE_SANDBOX_TOOL_ID',
-    'IMATERIALISE_SANDBOX_API_KEY',
-
-    'DB_PASSWORD_LIVE',
-
-    'AWS_S3_ACCESS_KEY_ID',
-    'AWS_S3_SECRET_ACCESS_KEY',
-
-    'MAILCHIMP_API_KEY',
-
-    'GOOGLE_SECRET',
-    'FACEBOOK_SECRET',
-    'UPS_API_KEY',
-]

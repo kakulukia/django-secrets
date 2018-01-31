@@ -1,20 +1,14 @@
-import io
-import os
-
-from os.path import expanduser
-
-from django.core.exceptions import ImproperlyConfigured
 from django.core.management.base import BaseCommand
 
+from django_secrets.utils import green
 from secrets import definitions
 
-from django_secrets.utils import green
-
 try:
-    from secrets.definitions import SECRET_KEYS
-except ImportError, e:
+    from secrets.definitions import SECRET_KEYS  # noqa
+except ImportError as e:
     print('\n\nPlease configure your secret definitions inside <project root>/secrets/definitions.py\n\n')
     exit()
+
 
 class Command(BaseCommand):
     help = 'Configures the project to use all the latest an greatest secrets.'

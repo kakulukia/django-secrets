@@ -1,12 +1,8 @@
 def _wrap_with(code):
-
     def inner(text, bold=False):
-        c = code
-
-        if bold:
-            c = "1;%s" % c
-        return "\033[%sm%s\033[0m" % (c, text)
+        return "\033[%sm%s\033[0m" % (code, text)
     return inner
+
 
 red = _wrap_with('31')
 green = _wrap_with('32')
