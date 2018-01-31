@@ -31,6 +31,7 @@ setup(
     download_url=url + '/tarball/' + version,
     install_requires=[
         'Django>=1.11',
+        'future',
     ],
     packages=find_packages(),
     include_package_data=True,
