@@ -17,7 +17,7 @@ def create_secrets_package(testing=False):
         os.mkdir('secrets')
     try:
         os.stat('secrets/__init__.py')
-    except FileNotFoundError:
+    except IOError:
         with io.open('secrets/__init__.py', 'w', encoding='utf8') as init_file:
             # just touch the file to create a new module
             init_file.close()
