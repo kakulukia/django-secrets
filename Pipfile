@@ -11,6 +11,7 @@ ipython = "*"
 pypandoc = "*"
 future = "*"
 six = "*"
+codecov = "*"
 
 
 [packages]
