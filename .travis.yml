@@ -22,9 +22,6 @@ matrix:
     exclude:
       - { python: "2.7", env: DJANGO=2.0 }
 
-#    allow_failures:
-#      - env: DJANGO=master
-
 script: make coverage
 
 after_success:

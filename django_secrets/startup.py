@@ -79,8 +79,7 @@ def check():
             if not (secrets and hasattr(secrets, key)):
                 print(green('got secret from environment variable (%s)' % key))
             filled_blanks[key] = secret
-        else:
-
+        else:  # pragma: no cover
             if not intro_done:
                 print(red('\nSecret missing, please fill in the blanks ..\n'))
                 intro_done = True
