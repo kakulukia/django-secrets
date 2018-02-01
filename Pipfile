@@ -10,6 +10,7 @@ ipdb = "*"
 ipython = "*"
 pypandoc = "*"
 future = "*"
+six = "*"
 
 
 [packages]

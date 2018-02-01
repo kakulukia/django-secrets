@@ -1,15 +1,8 @@
 import io
 import os
-try:  # python2
-    input = raw_input
-except NameError:
-    pass
 
-
-try:
-    from importlib import reload
-except ImportError:
-    pass  # its a builtin in python2
+from six.moves import input
+from six.moves import reload_module
 
 from django_secrets.utils import green, red
 
@@ -57,10 +50,10 @@ def load_definitions():
         # .. otherwise initialize a new secrets package
         create_secrets_package()
         import secrets
-        reload(secrets)
+        reload_module(secrets)
         from secrets import definitions
 
-    reload(definitions)
+    reload_module(definitions)
 
     return definitions.SECRET_KEYS
 
@@ -103,6 +96,6 @@ def check():
 
     # maybe we had a new value added so refresh the import system
     import secrets
-    reload(secrets)
+    reload_module(secrets)
     from secrets import secrets
-    reload(secrets)
+    reload_module(secrets)
