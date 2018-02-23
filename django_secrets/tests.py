@@ -24,8 +24,7 @@ class SecretTest(TestCase):
         os.environ["SECOND_SECRET"] = "blub"
         check()
         from my_secrets import secrets
-        if not hasattr(secrets, 'SECOND_SECRET'):
-            # pragma: no cover / travis import problem fix
+        if not hasattr(secrets, 'SECOND_SECRET'):  # pragma: no cover / travis import problem fix
             spec = importlib.util.spec_from_file_location('secrets', 'my_secrets/secrets.py')
             secrets = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(secrets)

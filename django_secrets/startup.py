@@ -99,8 +99,7 @@ def check():
         reload_module(my_secrets)
         from my_secrets import secrets
         reload_module(secrets)
-    except ImportError:
-        # pragma: no cover
+    except ImportError:  # pragma: no cover
         # fixing travis import errors
         import importlib.util
         import sys
