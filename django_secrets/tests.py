@@ -1,3 +1,4 @@
+import importlib
 import os
 import shutil
 
@@ -23,6 +24,10 @@ class SecretTest(TestCase):
         os.environ["SECOND_SECRET"] = "blub"
         check()
         from my_secrets import secrets
+        if not hasattr(secrets, 'SECOND_SECRET'):  # travis import problem fix
+            spec = importlib.util.spec_from_file_location('secrets', 'my_secrets/secrets.py')
+            secrets = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(secrets)
         self.assertEqual(secrets.SECOND_SECRET, 'blub')
 
     def test_export(self):
