@@ -13,16 +13,16 @@ class SecretTest(TestCase):
 
     def test_creating_secrets_folder(self):
 
-        self.assertIn('secrets', os.listdir('.'))
-        shutil.rmtree("secrets")
-        self.assertNotIn('secrets', os.listdir('.'))
+        self.assertIn('my_secrets', os.listdir('.'))
+        shutil.rmtree("my_secrets")
+        self.assertNotIn('my_secrets', os.listdir('.'))
         create_secrets_package(testing=True)
-        self.assertIn('secrets', os.listdir('.'))
+        self.assertIn('my_secrets', os.listdir('.'))
 
         # test adding back the secret
         os.environ["SECOND_SECRET"] = "blub"
         check()
-        from secrets import secrets
+        from my_secrets import secrets
         self.assertEqual(secrets.SECOND_SECRET, 'blub')
 
     def test_export(self):
