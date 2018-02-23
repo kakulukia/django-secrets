@@ -95,10 +95,10 @@ def check():
 
     # maybe we had a new value added so refresh the import system
     import secrets
-    print(secrets)
     print(os.path.exists('secrets'))
     print(os.path.exists('secrets/secrets.py'))
     print(open('secrets/secrets.py', 'r').read())
+    print(secrets)
     reload_module(secrets)
     print(secrets)
     from secrets import secrets
