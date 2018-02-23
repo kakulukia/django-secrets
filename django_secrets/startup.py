@@ -96,10 +96,10 @@ def check():
     # maybe we had a new value added so refresh the import system
     try:
         from secrets import secrets
+        reload_module(secrets)
     except ImportError:
         import importlib.util
         spec = importlib.util.spec_from_file_location('secrets', 'secrets/secrets.py')
         secrets = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(secrets)
 
-    reload_module(secrets)
