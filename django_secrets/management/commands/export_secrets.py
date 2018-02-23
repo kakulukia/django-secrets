@@ -1,3 +1,5 @@
+import importlib
+
 from django.core.management.base import BaseCommand
 
 from django_secrets.utils import green
@@ -10,6 +12,15 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         from my_secrets import secrets
+
+        # travis test fixes
+        for key in definitions.SECRET_KEYS:
+            if not hasattr(secrets, key):
+                spec = importlib.util.spec_from_file_location('secrets', 'my_secrets/secrets.py')
+                secrets = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(secrets)
+                break
+
         print(green('\nUse these lines to initialize your secrets ..\n'))
         for key in definitions.SECRET_KEYS:
             print('export %s="%s"' % (key, getattr(secrets, key)))
