@@ -8,7 +8,11 @@ Keep your secrets secret! |BuildStatus|_ |Coverage|_
 .. _Coverage: https://codecov.io/gh/kakulukia/django-secrets
 
 This little app helps you to not commit your secrets to a repo and adds
-a nice way of exporting/importing secrets for a new deployment or automated testing with envirenment variables.
+a nice way of exporting/importing secrets for a new deployment or automated testing with environment variables.
+
+Though this never happened to me during coding, Travis had some problems to reliably execute the tests
+and hot load the new secrets, so I had move the secrets module into the my_secrets package to not have
+two modules named secrets. Python obviously cant handle that. Lesson learned after about 40 Travis builds. :(
 
 Installation
 ------------
@@ -67,7 +71,7 @@ them like this:
 
 ::
 
-    from secrets import secrets
+    from my_secrets import secrets
 
     SECRET_KEY = secrets.SECRET_KEY
 
