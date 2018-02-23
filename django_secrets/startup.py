@@ -68,7 +68,7 @@ def check():
         secrets = None
 
     # Configure the project with all secrets found in the definitions list
-    # environment vars will be used as values if available
+    # environment vars will be used if available
     filled_blanks = {}
     intro_done = False
 
@@ -79,7 +79,7 @@ def check():
             if not (secrets and hasattr(secrets, key)):
                 print(green('got secret from environment variable (%s)' % key))
             filled_blanks[key] = secret
-        else:  # pragma: no cover / inputs aint possible in the CI
+        else:  # pragma: no cover / inputs ain't possible in the CI
             if not intro_done:
                 print(red('\nSecret missing, please fill in the blanks ..\n'))
                 intro_done = True
@@ -95,6 +95,9 @@ def check():
 
     # maybe we had a new value added so refresh the import system
     import secrets
+    print(os.path.exists('secrets'))
+    print(os.path.exists('secrets/secrets.py'))
+    print(open('secrets/secrets.py', 'r').read())
     reload_module(secrets)
     from secrets import secrets
     reload_module(secrets)
