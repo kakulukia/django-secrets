@@ -100,5 +100,6 @@ def check():
     print(os.path.exists('secrets/secrets.py'))
     print(open('secrets/secrets.py', 'r').read())
     reload_module(secrets)
+    print(secrets)
     from secrets import secrets
     reload_module(secrets)
