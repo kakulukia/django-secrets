@@ -13,7 +13,7 @@ clean-build: ## remove build artifacts
 	@rm -fr htmlcov/
 	@rm -fr *.egg-info
 	@rm -rf .coverage
-	@rm -rf secrets
+	@rm -rf my_secrets
 
 clean-pyc: ## remove Python file artifacts
 	@find . -name '*.pyc' -exec rm -f {} +

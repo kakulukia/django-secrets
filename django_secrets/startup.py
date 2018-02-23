@@ -100,20 +100,16 @@ def check():
         from my_secrets import secrets
         reload_module(secrets)
     except ImportError:
-        pass
-    #     print('zweiter Pfad')
-    #     import importlib.util
-    #     import sys
-    #     spec = importlib.util.spec_from_file_location('secrets', 'my_secrets/secrets.py')
-    #     secrets = importlib.util.module_from_spec(spec)
-    #     spec.loader.exec_module(secrets)
-    #     sys.modules['secrets'] = secrets
-    #
-    #     spec = importlib.util.spec_from_file_location('my_secrets', 'my_secrets/__init__.py')
-    #     my_secrets = importlib.util.module_from_spec(spec)
-    #     spec.loader.exec_module(my_secrets)
-    #     sys.modules['my_secrets'] = my_secrets
-    # except AttributeError:
-    #     print('attribute error')
-    #     print(my_secrets)
-    #     print(secrets)
+        # pragma: no cover
+        # fixing travis import errors
+        import importlib.util
+        import sys
+        spec = importlib.util.spec_from_file_location('secrets', 'my_secrets/secrets.py')
+        secrets = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(secrets)
+        sys.modules['secrets'] = secrets
+
+        spec = importlib.util.spec_from_file_location('my_secrets', 'my_secrets/__init__.py')
+        my_secrets = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(my_secrets)
+        sys.modules['my_secrets'] = my_secrets

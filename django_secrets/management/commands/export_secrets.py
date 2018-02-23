@@ -16,6 +16,7 @@ class Command(BaseCommand):
         # travis test fixes
         for key in definitions.SECRET_KEYS:
             if not hasattr(secrets, key):
+                # pragma: no cover travis problems
                 spec = importlib.util.spec_from_file_location('secrets', 'my_secrets/secrets.py')
                 secrets = importlib.util.module_from_spec(spec)
                 spec.loader.exec_module(secrets)
