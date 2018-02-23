@@ -94,10 +94,12 @@ def check():
             secret_file.write(u'%s = "%s"\n' % (key, value))
 
     # maybe we had a new value added so refresh the import system
-    from secrets import secrets
+    try:
+        from secrets import secrets
+    except ImportError:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('secrets', 'secrets/secrets.py')
+        secrets = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(secrets)
 
-    # import importlib.util
-    # spec = importlib.util.spec_from_file_location('secrets', 'secrets/secrets.py')
-    # mod = importlib.util.module_from_spec(spec)
-    # spec.loader.exec_module(mod)
     reload_module(secrets)
