@@ -112,3 +112,8 @@ def check():
         my_secrets = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(my_secrets)
         sys.modules['my_secrets'] = my_secrets
+    except AttributeError:  # pragma: no cover / also just happening in travis
+        pass
+        # print(my_secrets)
+        # print(secrets)
+
