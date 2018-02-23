@@ -12,9 +12,9 @@ pypandoc = "*"
 future = "*"
 six = "*"
 codecov = "*"
+django = "*"
+coverage = "*"
 
 
 [packages]
 
-django = "*"
-coverage = "*"
