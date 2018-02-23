@@ -114,5 +114,6 @@ def check():
         spec.loader.exec_module(my_secrets)
         sys.modules['my_secrets'] = my_secrets
     except AttributeError:
+        print('attribute error')
         print(my_secrets)
         print(secrets)
