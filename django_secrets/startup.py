@@ -63,9 +63,9 @@ def check():
     SECRET_KEYS = load_definitions()
 
     try:  # to import the existing secrets
-        from secrets import secrets
+        from secrets import secrets as secrets_list
     except ImportError:
-        secrets = None
+        secrets_list = None
 
     # Configure the project with all secrets found in the definitions list
     # environment vars will be used if available
@@ -74,9 +74,9 @@ def check():
 
     for key in SECRET_KEYS:
 
-        secret = (secrets and hasattr(secrets, key) and getattr(secrets, key)) or os.environ.get(key)
+        secret = (secrets_list and hasattr(secrets_list, key) and getattr(secrets_list, key)) or os.environ.get(key)
         if secret:
-            if not (secrets and hasattr(secrets, key)):
+            if not (secrets_list and hasattr(secrets_list, key)):
                 print(green('got secret from environment variable (%s)' % key))
             filled_blanks[key] = secret
         else:  # pragma: no cover / inputs ain't possible in the CI
