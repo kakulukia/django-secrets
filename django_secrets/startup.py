@@ -95,6 +95,7 @@ def check():
 
     # refresh the import system in case of new secrets or we just created the secrets package
     try:
+        print('erster Pfad')
         import my_secrets
         reload_module(my_secrets)
         from my_secrets import secrets
@@ -107,3 +108,8 @@ def check():
         secrets = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(secrets)
         sys.modules['secrets'] = secrets
+
+        spec = importlib.util.spec_from_file_location('my_secrets', 'my_secrets/__init__.py')
+        my_secrets = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(my_secrets)
+        sys.modules['my_secrets'] = my_secrets
