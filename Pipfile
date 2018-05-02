@@ -9,12 +9,11 @@ verify_ssl = true
 ipdb = "*"
 ipython = "*"
 pypandoc = "*"
-future = "*"
-six = "*"
 codecov = "*"
 django = "*"
 coverage = "*"
 
 
 [packages]
-
+future = "*"
+six = "*"

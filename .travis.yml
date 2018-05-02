@@ -20,7 +20,7 @@ env:
 install:
   - pip install pipenv
   - pip install django==$DJANGO
-  - pipenv install --dev
+  - pipenv install --deploy
 
 matrix:
     fast_finish: true
