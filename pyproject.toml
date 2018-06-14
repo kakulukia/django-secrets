@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django_secrets"
-version = "0.1.1"
+version = "1.0.1"
 description = ""
 authors = ["Andy Grabow <andy@freilandkiwis.de>"]
 license = "MIT"
@@ -15,4 +15,5 @@ ipdb = "^0.11.0"
 codecov = "^2.0"
 django = "^2.0"
 flake8 = "^3.5"
+pytest = "^3.6"
 
