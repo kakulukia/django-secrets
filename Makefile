@@ -22,10 +22,7 @@ clean-pyc: ## remove Python file artifacts
 	@find . -name '*~' -exec rm -f {} +
 
 init: ## create virtualenv for python3
-	pipenv install --dev
-
-init2: ## create virtualenv for python2
-	pipenv install --two --dev
+	poetry install
 
 lint: ## check style with flake8
 #	@echo "\nlooking for lints .."

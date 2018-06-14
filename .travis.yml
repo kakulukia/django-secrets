@@ -18,16 +18,16 @@ env:
   - DJANGO=2.0
 
 install:
-  - pip install pipenv
+  - pip install poetry
   - pip install django==$DJANGO
-  - pipenv install --deploy
+  - poetry install
 
 matrix:
     fast_finish: true
     exclude:
       - { python: "2.7", env: DJANGO=2.0 }
 
-script: make coverage
+script: poetry run make coverage
 
 after_success:
-  - codecov
+  - poetry run codecov
