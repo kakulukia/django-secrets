@@ -13,5 +13,5 @@ future = "^0.16.0"
 [tool.poetry.dev-dependencies]
 ipdb = "^0.11.0"
 codecov = "^2.0"
-django = "*"
+django = "^2.0"
 
