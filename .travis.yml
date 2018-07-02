@@ -18,8 +18,8 @@ env:
 
 install:
   - pip install poetry
-  - pip install django==$DJANGO
   - poetry install
+  - poetry run pip install django==$DJANGO
 
 matrix:
     fast_finish: true
