@@ -33,6 +33,7 @@ setup(
         'future',
         'six',
     ],
+    python_requires='>=2.6',
     packages=find_packages(),
     include_package_data=True,
     keywords=['Django', 'secrets', 'deployment'],
