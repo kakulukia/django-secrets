@@ -387,7 +387,7 @@ platform = "Independent"
 
 [[package]]
 name = "requests"
-version = "2.19.0"
+version = "2.19.1"
 description = "Python HTTP for Humans."
 category = "dev"
 optional = false
@@ -470,6 +470,15 @@ python-versions = "*"
 platform = "UNKNOWN"
 
 [[package]]
+name = "wheel"
+version = "0.31.1"
+description = "A built-package format for Python."
+category = "dev"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+platform = "*"
+
+[[package]]
 name = "win-unicode-console"
 version = "0.5"
 description = "Enable Unicode input and display when running Python from Windows console."
@@ -485,7 +494,7 @@ platform = "win32"
 [metadata]
 python-versions = "*"
 platform = "*"
-content-hash = "503191d338976c6904bfb7191e7fd595f711376326bec2338bb8b30297961b05"
+content-hash = "b8fc53ddb20513004ccb4d9c5d9f9367e185f0fa064a79682387c31dee2f856a"
 
 [metadata.hashes]
 appnope = [ "5b26757dc6f79a3b7dc9fab95359328d5747fcb2409d331ea66d0272b90ab2a0", "8b995ffe925347a2138d7ac0fe77155e4311a0ea6d6da4f5128fe4b3cbe5ed71",]
@@ -523,7 +532,7 @@ pyflakes = [ "08bd6a50edf8cffa9fa09a463063c425ecaaf10d1eb0335a7e8b1401aef89e6f",
 pygments = [ "78f3f434bcc5d6ee09020f92ba487f95ba50f1e3ef83ae96b9d5ffa1bab25c5d", "dbae1046def0efb574852fab9e90209b23f556367b5a320c0bcb871c77c3e8cc",]
 pytest = [ "26838b2bc58620e01675485491504c3aa7ee0faf335c37fcd5f8731ca4319591", "32c49a69566aa7c333188149ad48b58ac11a426d5352ea3d8f6ce843f88199cb",]
 pytz = [ "65ae0c8101309c45772196b21b74c46b2e5d11b6275c45d251b150d5da334555", "c06425302f2cf668f1bba7a0a03f3c1d34d4ebeef2c72003da308b3947c7f749",]
-requests = [ "421cfc8d9dde7d6aff68196420afd86b88c65d77d8da9cf83f4ecad785d7b9d6", "cc408268d0e21589bcc2b2c248e42932b8c4d112f499c12c92e99e2178a6134c",]
+requests = [ "63b52e3c866428a224f97cab011de738c36aec0185aa91cfacd418b5d58911d1", "ec22d826a36ed72a7358ff3fe56cbd4ba69dd7a6718ffd450ff0e9df7a47ce6a",]
 scandir = [ "f39dd5affde2860fb28176d2233f318ccca97c55019407ee8172b3fba0b211db", "7729b8444c5f5187649ff58501e7c2ad22b84d7dc28f738f64c5b615913fec22", "b6cb611a18a828146a178362a36a2c6557c51c596ded4314cb516dd8c947b4ce", "d985e36eb3effebb20434e6cd7495440b4ba676a22f3ec61e9fff9f3e2995238", "24f32112c483ac6c4a40b62f1282e61ecca7977153b66a0d26a9583a716dcb64", "b55a091b91f9e6c9c7129889b2f58df329530172a99172de9e784545342a45e6", "f91418e82edb5a43b020fa15e30a41d730b71c5957536749366bf63cc05427b1", "6c80092f8fe3e62c3da3110067589c6661c722b0889906d2974e5150f1314523", "96dfc553f50946deb6d1cd762bac5cf122832c4aa253c885ca357ef53dd8d072", "8e3ca5925cc13787aeafbf08f055a8066c091fc20bfa8783235b916cf047afbe", "b2d55be869c4f716084a19b1e16932f0769711316ba62de941320bf2be84763d",]
 setuptools = [ "8fca9275c89964f13da985c3656cb00ba029d7f3916b37990927ffdf264e7926", "f7cddbb5f5c640311eb00eab6e849f7701fa70bf6a183fc8a2c33dd1d1672fb2",]
 simplegeneric = [ "dc972e06094b9af5b855b3df4a646395e43d1c9d0d39ed345b7393560d0b9173",]
@@ -531,4 +540,5 @@ six = [ "832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb", "70e
 traitlets = [ "c6cb5e6f57c5a9bdaa40fa71ce7b4af30298fbab9ece9815b5d995ab6217c7d9", "9c4bd2d267b7153df9152698efb1050a5d84982d3384a37b2c1f7723ba3e7835",]
 urllib3 = [ "b5725a0bd4ba422ab0e66e89e030c806576753ea3ee08554382c14e685d117b5", "a68ac5e15e76e7e5dd2b8f94007233e01effe3e50e8daddf69acfd81cb686baf",]
 wcwidth = [ "f4ebe71925af7b40a864553f761ed559b43544f8f71746c2d756c7fe788ade7c", "3df37372226d6e63e1b1e1eda15c594bca98a22d33a23832a90998faa96bc65e",]
+wheel = [ "80044e51ec5bbf6c894ba0bc48d26a8c20a9ba629f4ca19ea26ecfcf87685f5f", "0a2e54558a0628f2145d2fc822137e322412115173e8a2ddbe1c9024338ae83c",]
 win-unicode-console = [ "d4142d4d56d46f449d6f00536a73625a871cba040f0bc1a2e305a04578f07d1e",]
