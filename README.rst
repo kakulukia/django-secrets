@@ -27,7 +27,7 @@ Usage
 -----
 
 After installing the package please add it to your ``INSTALLED_APPS``
-setting
+settings.
 
 ::
 
@@ -51,12 +51,12 @@ manage.py to run some code before the Django magic happens. Open
 
 
 Now that the check is in place, run ``manage.py`` to initialize your
-project. This wll create a new secrets package in your project root with
+project. This will create a new my_secrets package in your project root with
 the following contents:
 
 ::
 
-    secrets
+    my_secrets
     ├── .gitignore
     ├── __init__.py
     ├── definitions.py
@@ -64,8 +64,8 @@ the following contents:
 
 The package also features a .gitignore file to prevent you from checking
 in any secrets to git. Now open ``definitions.py`` to add your secrets
-to the list. Start with the Django secret key for example. When your
-done adding all secrets, run ``manage.py`` again and you wil be asked to
+to the list. Start with the Django secret key for example. When you are
+done adding all secrets, run ``manage.py`` again and you will be asked to
 enter your secrets.
 
 Now you can remove your secrets from ``settings.py`` and instead replace
@@ -78,7 +78,7 @@ them like this:
     SECRET_KEY = secrets.SECRET_KEY
 
 Since the secrets are saved in a normal python package, you can just use
-them the normal way, but now they are save! :)
+them the normal way including code completion, but now they are safe! :)
 
 Import / Export
 ---------------
