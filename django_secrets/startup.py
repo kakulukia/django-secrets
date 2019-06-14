@@ -4,22 +4,26 @@ import os
 from six.moves import input
 from six.moves import reload_module
 
+
 from django_secrets.utils import green, red
 
 
 def create_secrets_package(testing=False):
+    import manage
+    BASE_DIR = os.path.dirname(manage.__file__)
+
     try:
-        os.stat('my_secrets')
+        os.stat(os.path.join(BASE_DIR, 'my_secrets'))
     except Exception:
-        os.mkdir('my_secrets')
+        os.mkdir(os.path.join(BASE_DIR, 'my_secrets'))
     try:
-        os.stat('my_secrets/__init__.py')
+        os.stat(os.path.join(BASE_DIR, 'my_secrets', '__init__.py'))
     except OSError:
-        with io.open('my_secrets/__init__.py', 'w', encoding='utf8') as init_file:
+        with io.open(os.path.join(BASE_DIR, 'my_secrets', '__init__.py'), 'w', encoding='utf8') as init_file:
             # just touch the file to create a new module
             init_file.close()
 
-    with io.open('my_secrets/definitions.py', 'w', encoding='utf8') as definitions_file:
+    with io.open(os.path.join(BASE_DIR, 'my_secrets', 'definitions.py'), 'w', encoding='utf8') as definitions_file:
         definitions_file.write(u'# coding=utf-8\n\n')
         definitions_file.write(u'# Add your secrets to this list and run manage.py to set their values.\n')
         definitions_file.write(u'# Use them in settings.py like this:\n')
@@ -35,8 +39,8 @@ def create_secrets_package(testing=False):
         definitions_file.write(u']\n')
 
     # test for ignore file and create it if needed
-    if not os.path.isfile('my_secrets/.gitignore'):
-        with io.open('my_secrets/.gitignore', 'w', encoding='utf8') as ignore_file:
+    if not os.path.isfile(os.path.join(BASE_DIR, 'my_secrets', '.gitignore')):
+        with io.open(os.path.join(BASE_DIR, 'my_secrets', '.gitignore'), 'w', encoding='utf8') as ignore_file:
             ignore_file.write(u'secrets.py\n')
 
     print(green('\nSecret definitions initialized under my_secrets/definitions.py'))
@@ -59,6 +63,8 @@ def load_definitions():
 
 
 def check():
+    import manage
+    BASE_DIR = os.path.dirname(manage.__file__)
 
     SECRET_KEYS = load_definitions()
 
@@ -87,7 +93,7 @@ def check():
             data = input(key + ': ')
             filled_blanks[key] = data
 
-    with io.open('my_secrets/secrets.py', 'w', encoding='utf8') as secret_file:
+    with io.open(os.path.join(BASE_DIR, 'my_secrets', 'secrets.py'), 'w', encoding='utf8') as secret_file:
 
         secret_file.write(u'#  coding=utf-8\n\n')
         for key, value in filled_blanks.items():
@@ -103,12 +109,12 @@ def check():
         # fixing travis import errors
         import importlib.util
         import sys
-        spec = importlib.util.spec_from_file_location('secrets', 'my_secrets/secrets.py')
+        spec = importlib.util.spec_from_file_location('secrets', os.path.join(BASE_DIR, 'my_secrets', 'secrets.py'))
         secrets = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(secrets)
         sys.modules['secrets'] = secrets
 
-        spec = importlib.util.spec_from_file_location('my_secrets', 'my_secrets/__init__.py')
+        spec = importlib.util.spec_from_file_location('my_secrets', os.path.join(BASE_DIR, 'my_secrets', '__init__.py'))
         my_secrets = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(my_secrets)
         sys.modules['my_secrets'] = my_secrets
