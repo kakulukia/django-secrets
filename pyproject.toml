@@ -6,7 +6,7 @@ authors = ["Andy Grabow <andy@freilandkiwis.de>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "*"
+python = "^3.6.1"
 six = "^1.11"
 future = "^0.16.0"
 
