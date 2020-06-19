@@ -11,7 +11,7 @@ from django_secrets.utils import green, red
 def create_secrets_package(testing=False):
     import manage
     BASE_DIR = os.path.dirname(manage.__file__)
-    print(BASE_DIR)
+
     try:
         os.stat(os.path.join(BASE_DIR, 'my_secrets'))
     except Exception:
@@ -45,6 +45,9 @@ def create_secrets_package(testing=False):
 
     print(green('\nSecret definitions initialized under my_secrets/definitions.py'))
     print('Add your secrets there and fill the values on the next use of a manage.py command.\n\n')
+    print(BASE_DIR)
+    print(os.stat('my_secrets'))
+    print(os.stat(os.path.join(BASE_DIR, 'my_secrets', '__init__.py')))
 
 
 def load_definitions():
