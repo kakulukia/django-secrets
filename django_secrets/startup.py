@@ -11,7 +11,7 @@ from django_secrets.utils import green, red
 def create_secrets_package(testing=False):
     import manage
     BASE_DIR = os.path.dirname(manage.__file__)
-
+    print(BASE_DIR)
     try:
         os.stat(os.path.join(BASE_DIR, 'my_secrets'))
     except Exception:
