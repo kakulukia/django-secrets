@@ -3,13 +3,11 @@ cache: pip
 sudo: false
 
 python:
-  - "3.5"
   - "3.6"
   - "3.7"
   - "3.8"
 
 env:
-  - DJANGO=1.11
   - DJANGO=2.0
   - DJANGO=3.0
 
