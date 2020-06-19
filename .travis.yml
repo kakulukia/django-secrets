@@ -3,16 +3,15 @@ cache: pip
 sudo: false
 
 python:
-  - "2.7"
   - "3.5"
   - "3.6"
+  - "3.7"
+  - "3.8"
 
 env:
-  - DJANGO=1.8
-  - DJANGO=1.9
-  - DJANGO=1.10
   - DJANGO=1.11
   - DJANGO=2.0
+  - DJANGO=3.0
 
 install:
   - pip install poetry
@@ -21,8 +20,6 @@ install:
 
 matrix:
     fast_finish: true
-    exclude:
-      - { python: "2.7", env: DJANGO=2.0 }
 
 script: poetry run make coverage
 

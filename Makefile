@@ -27,7 +27,7 @@ init: ## create virtualenv for python3
 lint: ## check style with flake8
 #	@echo "\nlooking for lints .."
 #	@echo "===================="
-	@flake8 .
+	@flake8 django_secrets
 
 test: clean lint ## run testsuite
 	python manage.py test
