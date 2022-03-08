@@ -1,6 +1,6 @@
 import io
 import os
-from pathlib import Path
+import sys
 
 from six.moves import input
 from six.moves import reload_module
@@ -71,11 +71,16 @@ def check():
     # Configure the project with all secrets found in the definitions list
     # environment vars will be used if available
     filled_blanks = {}
+    existing_data = {}
     intro_done = False
 
     for key in SECRET_KEYS:
+        if secrets and hasattr(secrets, key) and getattr(secrets, key):
+            existing_data[key] = getattr(secrets, key)
+            continue  # for known secrets
 
-        secret = (secrets and hasattr(secrets, key) and getattr(secrets, key)) or os.environ.get(key)
+        # otherwise try to get it from the environment or the user
+        secret = os.environ.get(key)
         if secret:
             if not (secrets and hasattr(secrets, key)):
                 print(green('got secret from environment variable (%s)' % key))
@@ -88,36 +93,41 @@ def check():
             data = input(key + ': ')
             filled_blanks[key] = data
 
-    secrets_file = 'my_secrets/secrets.py'
-    if not os.path.exists(secrets_file):
-        app_path = Path(sys.argv[0]).parent
-        secrets_file = str(app_path / secrets_file)
-    with io.open(secret_file, 'w', encoding='utf8') as secret_file:
+    if filled_blanks:  # in case of new data write the secrets file again
+        secrets_file = 'my_secrets/secrets.py'
+        if not os.path.exists(secrets_file):
+            import sys
+            from pathlib import Path
+            app_path = Path(sys.argv[0]).parent
+            secrets_file = str(app_path / secrets_file)
 
-        secret_file.write(u'#  coding=utf-8\n\n')
-        for key, value in filled_blanks.items():
-            secret_file.write(u'%s = "%s"\n' % (key, value))
+        with io.open(secrets_file, 'w', encoding='utf8') as secret_file:
+            secret_file.write(u'#  coding=utf-8\n\n')
+            for key, value in existing_data.items():
+                secret_file.write(u'%s = "%s"\n' % (key, value))
+            for key, value in filled_blanks.items():
+                secret_file.write(u'%s = "%s"\n' % (key, value))
 
-    # refresh the import system in case of new secrets or we just created the secrets package
-    try:
-        import my_secrets
-        reload_module(my_secrets)
-        from my_secrets import secrets
-        reload_module(secrets)
-    except ImportError:  # pragma: no cover
-        # fixing travis import errors
-        import importlib.util
-        import sys
-        spec = importlib.util.spec_from_file_location('secrets', 'my_secrets/secrets.py')
-        secrets = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(secrets)
-        sys.modules['secrets'] = secrets
+        # refresh the import system in case of new secrets or we just created the secrets package
+        try:
+            import my_secrets
+            reload_module(my_secrets)
+            from my_secrets import secrets
+            reload_module(secrets)
+        except ImportError:  # pragma: no cover
+            # fixing travis import errors
+            import importlib.util
+            import sys
+            spec = importlib.util.spec_from_file_location('secrets', 'my_secrets/secrets.py')
+            secrets = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(secrets)
+            sys.modules['secrets'] = secrets
 
-        spec = importlib.util.spec_from_file_location('my_secrets', 'my_secrets/__init__.py')
-        my_secrets = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(my_secrets)
-        sys.modules['my_secrets'] = my_secrets
-    except AttributeError:  # pragma: no cover / also just happening in travis
-        pass
-        # print(my_secrets)
-        # print(secrets)
+            spec = importlib.util.spec_from_file_location('my_secrets', 'my_secrets/__init__.py')
+            my_secrets = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(my_secrets)
+            sys.modules['my_secrets'] = my_secrets
+        except AttributeError:  # pragma: no cover / also just happening in travis
+            pass
+            # print(my_secrets)
+            # print(secrets)
