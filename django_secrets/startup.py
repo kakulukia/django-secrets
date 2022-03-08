@@ -1,5 +1,6 @@
 import io
 import os
+from pathlib import Path
 
 from six.moves import input
 from six.moves import reload_module
@@ -87,7 +88,11 @@ def check():
             data = input(key + ': ')
             filled_blanks[key] = data
 
-    with io.open('my_secrets/secrets.py', 'w', encoding='utf8') as secret_file:
+    secrets_file = 'my_secrets/secrets.py'
+    if not os.path.exists(secrets_file):
+        app_path = Path(sys.argv[0]).parent
+        secrets_file = str(app_path / secrets_file)
+    with io.open(secret_file, 'w', encoding='utf8') as secret_file:
 
         secret_file.write(u'#  coding=utf-8\n\n')
         for key, value in filled_blanks.items():
