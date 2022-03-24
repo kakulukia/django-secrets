@@ -1,6 +1,5 @@
 import io
 import os
-import sys
 
 from six.moves import input
 from six.moves import reload_module
