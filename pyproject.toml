@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django_secrets"
-version = "1.2.1"
+version = "1.2.2"
 description = ""
 authors = ["Andy Grabow <andy@freilandkiwis.de>"]
 license = "MIT"
