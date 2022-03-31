@@ -9,7 +9,7 @@ license = "MIT"
 python = "^3.8"
 six = "^1.11"
 future = "^0.18.2"
-Django = "^2.2.27"
+Django = ">=2.2.27"
 
 [tool.poetry.group.dev.dependencies]
 ipdb = "^0.13.9"
