@@ -38,6 +38,7 @@ jobs:
         curl -sSL https://install.python-poetry.org | python3 - --preview
         poetry install
         poetry run pip install django==${{ matrix.django }}
+        poetry run pip install flake8
     - name: Flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
