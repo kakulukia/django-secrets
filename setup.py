@@ -26,7 +26,7 @@ setup(
     author='Andy Grabow',
     author_email='andy@freilandkiwis.de',
     license='MIT',
-    keywords=['keys', 'key', 'secret', 'secrets'],
+    keywords=['keys', 'key', 'secret', 'secrets','Django', 'deployment'],
     url=url,
     download_url=url + '/tarball/' + version,
     install_requires=[
@@ -37,7 +37,6 @@ setup(
     python_requires='>=3.6',
     packages=find_packages(),
     include_package_data=True,
-    keywords=['Django', 'secrets', 'deployment'],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Framework :: Django',
