@@ -20,12 +20,13 @@ url = 'https://github.com/kakulukia/django-secrets'
 
 setup(
     name='django-secrets',
+    version=version,
     description='The easy way of handling Django secrets.',
     long_description=readme,
-    version=version,
     author='Andy Grabow',
     author_email='andy@freilandkiwis.de',
     license='MIT',
+    keywords=['keys', 'key', 'secret', 'secrets'],
     url=url,
     download_url=url + '/tarball/' + version,
     install_requires=[
@@ -46,8 +47,10 @@ setup(
         'Programming Language :: Python',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Framework :: Django',
         'Framework :: Django :: 2.0',
         'Framework :: Django :: 3.0',
