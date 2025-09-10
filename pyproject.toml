@@ -12,6 +12,6 @@ Django = ">=2.2.27"
 
 [tool.poetry.group.dev.dependencies]
 ipdb = "^0.13.9"
-codecov = "^2.0"
+codecov = "^2.1.13"
 pytest = "^8.4.2"
 wheel = "^0.45.1"
