@@ -31,7 +31,6 @@ setup(
     download_url=url + '/tarball/' + version,
     install_requires=[
         'Django>=2.0',
-        'future',
         'six',
     ],
     python_requires='>=3.6',

@@ -6,15 +6,12 @@ authors = ["Andy Grabow <andy@freilandkiwis.de>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9"
 six = "^1.11"
-future = "^0.18.2"
 Django = ">=2.2.27"
 
 [tool.poetry.group.dev.dependencies]
 ipdb = "^0.13.9"
 codecov = "^2.0"
-flake8 = "^4.0.1"
-pytest = "^7.1.1"
-wheel = "^0.37.1"
-
+pytest = "^8.4.2"
+wheel = "^0.45.1"
