@@ -20,16 +20,16 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
-        django: ["3.0", "4.0", "5.0"]
+        django: ["3", "4", "5"]
         exclude:
           - python-version: "3.13"
-            django: "4.0"
+            django: "4"
           - python-version: "3.13"
-            django: "3.0"
+            django: "3"
           - python-version: "3.12"
-            django: "3.0"
+            django: "3"
           - python-version: "3.9"
-            django: "5.0"
+            django: "5"
 
     steps:
     - uses: actions/checkout@v3
