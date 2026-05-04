@@ -60,4 +60,4 @@ release: clean ## package and upload a release (working dir must be clean)
 		esac \
 	done
 	@uv build
-	@uv run twine upload dist/*
+	@uv publish
