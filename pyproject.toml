@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "django-secrets"
-version = "3.0.0"
+version = "3.0.1"
 description = "The easy way of handling Django secrets."
 readme = "README.rst"
 requires-python = ">=3.12"
@@ -31,7 +31,7 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/kakulukia/django-secrets"
-Download = "https://github.com/kakulukia/django-secrets/tarball/3.0.0"
+Download = "https://github.com/kakulukia/django-secrets/tarball/3.0.1"
 
 [dependency-groups]
 dev = [
@@ -59,7 +59,7 @@ exclude = [
 select = ["E", "F"]
 
 [tool.bumpversion]
-current_version = "3.0.0"
+current_version = "3.0.1"
 commit = true
 tag = true
 
