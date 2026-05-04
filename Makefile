@@ -22,28 +22,28 @@ clean-pyc: ## remove Python file artifacts
 	@find . -name '*~' -exec rm -f {} +
 
 init: ## create virtualenv for python3
-	poetry install
+	uv sync
 
-lint: ## check style with flake8
+lint: ## check style with ruff
 #	@echo "\nlooking for lints .."
 #	@echo "===================="
-	@flake8 django_secrets
+	@uv run ruff check django_secrets
 
 test: clean lint ## run testsuite
-	python manage.py test
+	@printf '\n' | env -u SECRET_KEY SECOND_SECRET=blub uv run python manage.py test
 
 coverage: clean  ## test and generate coverage data
-	@SECOND_SECRET=blub; coverage run manage.py test
-	@coverage report -m
+	@printf '\n' | env -u SECRET_KEY SECOND_SECRET=blub uv run coverage run manage.py test
+	@uv run coverage report -m
 	@make lint
 
 view-coverage: coverage ## open coverage report in the browser
-	@coverage html
+	@uv run coverage html
 	@open htmlcov/index.html
 
 release: clean ## package and upload a release (working dir must be clean)
 	@while true; do \
-		CURRENT=`python -c "import django_secrets; print(django_secrets.__version__)"`; \
+		CURRENT=`uv run python -c "import django_secrets; print(django_secrets.__version__)"`; \
 		echo ""; \
 		echo "=== The current version is $$CURRENT - what's the next one?"; \
 		echo "==========================================================="; \
@@ -53,10 +53,11 @@ release: clean ## package and upload a release (working dir must be clean)
 		echo ""; \
 		read yn; \
 		case $$yn in \
-			1 ) bumpversion major; break;; \
-			2 ) bumpversion minor; break;; \
-			3 ) bumpversion patch; break;; \
+			1 ) uv run bump-my-version bump major; break;; \
+			2 ) uv run bump-my-version bump minor; break;; \
+			3 ) uv run bump-my-version bump patch; break;; \
 			* ) echo "Please answer 1-3.";; \
 		esac \
 	done
-	@poetry build && twine upload dist/*
+	@uv build
+	@uv run twine upload dist/*

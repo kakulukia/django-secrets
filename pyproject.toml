@@ -1,17 +1,71 @@
-[tool.poetry]
-name = "django_secrets"
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-secrets"
 version = "2.0.1"
-description = ""
-authors = ["Andy Grabow <andy@freilandkiwis.de>"]
+description = "The easy way of handling Django secrets."
+readme = "README.rst"
+requires-python = ">=3.12"
 license = "MIT"
+authors = [
+    { name = "Andy Grabow", email = "andy@freilandkiwis.de" },
+]
+keywords = ["keys", "key", "secret", "secrets", "Django", "deployment"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: Django",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "Django>=2.2.27",
+    "six>=1.11",
+]
 
-[tool.poetry.dependencies]
-python = "^3.9"
-six = "^1.11"
-Django = ">=2.2.27"
+[project.urls]
+Homepage = "https://github.com/kakulukia/django-secrets"
+Download = "https://github.com/kakulukia/django-secrets/tarball/2.0.1"
 
-[tool.poetry.group.dev.dependencies]
-ipdb = "^0.13.9"
-codecov = "^2.1.13"
-pytest = "^8.4.2"
-wheel = "^0.45.1"
+[dependency-groups]
+dev = [
+    "bump-my-version>=1.0.0",
+    "codecov>=2.1.13",
+    "coverage>=7.0.0",
+    "ipdb>=0.13.9",
+    "pytest>=8.4.2",
+    "ruff>=0.8.0",
+    "twine>=6.0.0",
+    "wheel>=0.45.1",
+]
+
+[tool.setuptools.packages.find]
+include = ["django_secrets*"]
+
+[tool.ruff]
+line-length = 140
+exclude = [
+    ".git",
+    "build",
+    "dist",
+]
+
+[tool.ruff.lint]
+select = ["E", "F"]
+
+[tool.bumpversion]
+current_version = "2.0.1"
+commit = true
+tag = true
+
+[[tool.bumpversion.files]]
+filename = "django_secrets/__init__.py"
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"

@@ -1,6 +1,8 @@
 import io
 import os
 
+from django.core.management.utils import get_random_secret_key
+
 from six.moves import input
 from six.moves import reload_module
 
@@ -58,6 +60,15 @@ def load_definitions():
     return definitions.SECRET_KEYS
 
 
+def prompt_for_secret(key):
+    if key == 'SECRET_KEY':
+        default = get_random_secret_key()
+        data = input('%s [%s]: ' % (key, default))
+        return data or default
+
+    return input(key + ': ')
+
+
 def check():
 
     SECRET_KEYS = load_definitions()
@@ -89,7 +100,7 @@ def check():
                 print(red('\nSecret missing, please fill in the blanks ..\n'))
                 intro_done = True
 
-            data = input(key + ': ')
+            data = prompt_for_secret(key)
             filled_blanks[key] = data
 
     if filled_blanks:  # in case of new data write the secrets file again
