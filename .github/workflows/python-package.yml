@@ -36,7 +36,7 @@ jobs:
     - name: Install dependencies
       run: |
         uv sync --group dev --locked
-        uv run python -m pip install "django==${{ matrix.django }}" flake8
+        uv pip install --python .venv/bin/python "django==${{ matrix.django }}" flake8
     - name: Flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names

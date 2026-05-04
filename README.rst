@@ -23,6 +23,12 @@ Installation
 
     pip install django-secrets
 
+If you prefer ``uv``, use:
+
+::
+
+    uv add django-secrets
+
 Usage
 -----
 
