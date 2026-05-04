@@ -68,3 +68,10 @@ filename = "django_secrets/__init__.py"
 
 [[tool.bumpversion.files]]
 filename = "pyproject.toml"
+
+[[tool.bumpversion.files]]
+filename = "uv.lock"
+search = '''name = "django-secrets"
+version = "{current_version}"'''
+replace = '''name = "django-secrets"
+version = "{new_version}"'''
