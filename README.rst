@@ -14,7 +14,20 @@ Though this never happened to me during coding, Travis had some problems to reli
 and hot load the new secrets, so I had move the secrets module into the my_secrets package to not have
 two modules named secrets. Python obviously cant handle that. Lesson learned after about 40 Travis builds. :(
 
-django-secrets is working under Django 1.5+ and Python 2.7, 3.5 and 3.6
+django-secrets is currently tested with Python 3.12, 3.13, and 3.14, and with Django 4.x, 5.x, and 6.x.
+
+Supported versions
+-------------------
+
+The CI matrix currently covers:
+
+- Python 3.12, 3.13, and 3.14
+- Django 4.x, 5.x, and 6.x
+- Django 4.x only on Python 3.12
+
+For Django's official Python compatibility, see the release notes:
+`Django 5.2 <https://docs.djangoproject.com/en/6.0/releases/5.2/>`_
+and `Django 6.1 <https://docs.djangoproject.com/en/dev/releases/6.1/>`_.
 
 Installation
 ------------
