@@ -53,9 +53,9 @@ release: clean ## package and upload a release (working dir must be clean)
 		echo ""; \
 		read yn; \
 		case $$yn in \
-			1 ) uv run bump-my-version bump major; break;; \
-			2 ) uv run bump-my-version bump minor; break;; \
-			3 ) uv run bump-my-version bump patch; break;; \
+			1 ) uv run bump-my-version bump major || exit $$?; break;; \
+			2 ) uv run bump-my-version bump minor || exit $$?; break;; \
+			3 ) uv run bump-my-version bump patch || exit $$?; break;; \
 			* ) echo "Please answer 1-3.";; \
 		esac \
 	done
